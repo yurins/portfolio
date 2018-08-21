@@ -1018,8 +1018,8 @@ button.close {
   opacity: .7;
   border: none;
   background-color: #fff5ee;
-  position: fixed;
-  right: 1em;
+  position: absolute;
+  right:1em;
   font-weight: bold;
 }
 
@@ -1067,8 +1067,12 @@ button.close {
   
   .bmd-modalContent .close {
     position: absolute;
-    top :4em;
-    right: 5.3em;
+    top : -10px;
+    right: 3em;
+  }
+
+  .modal {
+    padding-top: 80px;
   }
 }
 
@@ -1084,8 +1088,12 @@ button.close {
 
   .bmd-modalContent .close {
     position: absolute;
-    top: 4em;
-    right: 7.8em;
+    top: -7px;
+    right: 5em;
+  }
+
+  .modal {
+    padding-top: 80px;
   }
 }
 
