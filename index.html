@@ -47,14 +47,23 @@
  <main> 
  <section id="hello">
   <div>
-   <h2><span>Hello,</span> My name is <span class="first-name">Yuri</span>. <br>I love building websites.</br></h2>
-  </div>
+   <h2>Hello, My name is <span class="first-name">Yuri.</span><br>
+   <span class="love">I love</span> 
+    <div id="rotate">
+     <span class="word">making websites.</span>
+     <span class="word">designing websites.</span>
+     <span class="word">developing websites.</span>
+     <span class="word">working with people.</span>
+    <span class="word">panda.</span>
+    </div>
+   </h2>
+  </div> 
  </section>
   
  <section id="about">
    <h2>A little bit about me.</h2>
    <div class="about-content"> 
-    <p>I’m a Web Designer and Front-End Developer from Northern Virginia. </p>
+    <p>I’m a Web Designer and Developer from Northern Virginia. </p>
     <p>I have always thought designing and making websites was exciting from an early age and finally began pursuing this career professionally a few years ago.</p>
     <p> I enjoy finding creative design ideas and solutions for beautiful, clean, and user-friendly websites to make my clients’ business shine.</p><p>When I’m not coding, I like scouring local restaurants for good food or travelling. </p>
    </div>  
@@ -321,43 +330,50 @@
         }
        }
      });
-      
-     // Get the modal
-   //   var modal = document.getElementById('myModal');
-    // Get the image and insert it inside the modal - use its "alt" text as a  caption
-   //   var img = document.getElementById('myImg');
-   //   var modalImg = document.getElementById("img01");
-   //   var captionText = document.getElementById("caption");
-   //   img.onclick = function(){
-   //    modal.style.display = "block";
-   //    modalImg.src = this.src;
-   //   captionText.innerHTML = this.alt;
-   //   }
-    // Get the <span> element that closes the modal
-   //   var span = document.getElementsByClassName("close")[0];
-   //    span.onclick = function() { 
-   //     modal.style.display = "none";
-   //   }
-    // Get the modal
-   //   var modal = document.getElementById('myModal2');
-    // Get the image and insert it inside the modal - use its "alt" text as a  caption
-   //   var img = document.getElementById('myImg2');
-   //   var modalImg = document.getElementById("img02");
-   //   var captionText = document.getElementById("caption2");
-   //   img.onclick = function(){
-   //    modal.style.display = "block";
-   //    modalImg.src = this.src;
-   //    captionText.innerHTML = this.alt;
-   //   }
-    // Get the <span> element that closes the modal
-   //   var span = document.getElementsByClassName("close2")[0];
-    // When the user clicks on <span> (x), close the modal
-   //   span.onclick = function() { 
-   //    modal.style.display = "none";
-   //   }
 
- (function($) {
-    $.fn.bmdIframe = function( options ) {
+  //text rotator// 
+   (function($){
+    $.fn.extend({ 
+        rotaterator: function(options) {
+ 
+            var defaults = {
+                fadeSpeed: 600,
+                pauseSpeed: 200,
+        child:null
+            };
+             
+            var options = $.extend(defaults, options);
+         
+            return this.each(function() {
+                  var o =options;
+                  var obj = $(this);                
+                  var items = $(obj.children(), obj);
+          items.each(function() {$(this).hide();})
+          if(!o.child){var next = $(obj).children(':first');
+          }else{var next = o.child;
+          }
+          $(next).fadeIn(o.fadeSpeed, function() {
+            $(next).delay(o.pauseSpeed).fadeOut(o.fadeSpeed, function() {
+              var next = $(this).next();
+              if (next.length == 0){
+                  next = $(obj).children(':first');
+              }
+              $(obj).rotaterator({child : next, fadeSpeed : o.fadeSpeed, pauseSpeed : o.pauseSpeed});
+            })
+          });
+            });
+        }
+    });
+})(jQuery);
+  
+
+ $(document).ready(function() {
+        $('#rotate').rotaterator({fadeSpeed:600, pauseSpeed:200});
+ });   
+
+ //modal//
+   (function($) {
+      $.fn.bmdIframe = function( options ) {
         var self = this;
         var settings = $.extend({
             classBtn: '.bmd-modalButton',
@@ -375,8 +391,6 @@
           };
           
           if ( allowFullscreen ) dataVideo.allowfullscreen = "";
-          
-          // stampiamo i nostri dati nell'iframe
           $(self).find("iframe").attr(dataVideo);
         });
       
@@ -387,12 +401,10 @@
       
         return this;
     };
-  
-})(jQuery);
- 
-jQuery(document).ready(function(){
-  jQuery("#myModal").bmdIframe();
-});
+  })(jQuery);
+  jQuery(document).ready(function(){
+   jQuery("#myModal").bmdIframe();
+ });
    </script>
 
        <!-- <script src="js/plugins.js"></script>-->

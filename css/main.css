@@ -252,12 +252,15 @@ main {
 #hello h2 {
     line-height: 37px;
     padding: 50px;
-    text-align: center;
     font-size: 25px;
 }
 
 .first-name {
     color: white;
+}
+
+#rotate {
+    display: inline-block;
 }
 
 /* ABOUT */
