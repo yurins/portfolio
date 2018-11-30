@@ -178,16 +178,16 @@
        <div class="modal-dialog">
         <div class="modal-content bmd-modalContent">
 
-         <div class="modal-body">
+        <div class="modal-body">
           
-         <div class="close-button">
+        <div class="close-button">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-         </div>
+        </div>
        
-          <div class="embed-responsive embed-responsive-16by9">
+         <div class="embed-responsive embed-responsive-16by9">
           <iframe class="embed-responsive-item" frameborder="0"></iframe>
-          </div>
          </div>
+        </div>
 
         </div><!-- /.modal-content -->
        </div><!-- /.modal-dialog -->
@@ -288,17 +288,17 @@
        $(window).scroll(function() {
         if($(this).scrollTop() > 0) {
           $('.main-header').addClass('small');
-         } else {
+           } else {
           $('.main-header').removeClass('small');
-         }
+           }
         });
 
-         $("#toggle-button").on('click', function(){
+       $("#toggle-button").on('click', function(){
            $(this).toggleClass('on');
            $('#toggle-menu').fadeToggle(200);  
         }); 
 
-         $("#toggle-menu li").click(function(){
+       $("#toggle-menu li").click(function(){
           $('#toggle-button').removeClass('on');
           $('#toggle-menu').fadeOut(200);
          });
@@ -331,9 +331,9 @@
        }
      });
 
-  //text rotator// 
-   (function($){
-    $.fn.extend({ 
+    //text rotator// 
+     (function($){
+       $.fn.extend({ 
         rotaterator: function(options) {
  
             var defaults = {
@@ -359,20 +359,20 @@
                   next = $(obj).children(':first');
               }
               $(obj).rotaterator({child : next, fadeSpeed : o.fadeSpeed, pauseSpeed : o.pauseSpeed});
-            })
-          });
+              })
+             });
             });
-        }
-    });
-})(jQuery);
-  
-
- $(document).ready(function() {
+           }
+          });
+         })(jQuery);  
+        
+        $(document).ready(function() {
         $('#rotate').rotaterator({fadeSpeed:600, pauseSpeed:200});
- });   
+        }); 
 
- //modal//
-   (function($) {
+
+    //modal//
+    (function($) {
       $.fn.bmdIframe = function( options ) {
         var self = this;
         var settings = $.extend({
@@ -393,19 +393,18 @@
           if ( allowFullscreen ) dataVideo.allowfullscreen = "";
           $(self).find("iframe").attr(dataVideo);
         });
-      
-        // se si chiude la modale resettiamo i dati dell'iframe per impedire ad un video di continuare a riprodursi anche quando la modale è chiusa
         this.on('hidden.bs.modal', function(){
           $(this).find('iframe').html("").attr("src", "");
         });
       
         return this;
-    };
-  })(jQuery);
-  jQuery(document).ready(function(){
-   jQuery("#myModal").bmdIframe();
- });
-   </script>
+      };
+     })(jQuery);
+     
+     jQuery(document).ready(function(){
+     jQuery("#myModal").bmdIframe();
+     });
+    </script>
 
        <!-- <script src="js/plugins.js"></script>-->
         <!--<script src="js/main.js"></script> -->
